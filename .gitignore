@@ -1,0 +1,16 @@
+# Browser session — contains LinkedIn cookies, DO NOT commit
+mcp-server/browser-profile/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# User-specific data
+mcp-server/jobs.db
+mcp-server/jobs.db-shm
+mcp-server/jobs.db-wal
+mcp-server/claude_analysis.json
+
+# MCP config (contains absolute paths specific to each machine)
+.mcp.json

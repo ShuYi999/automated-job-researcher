@@ -1,0 +1,25 @@
+{
+  "name": "Job Research Automation",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "charliermarsh.ruff"
+      ]
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "containerEnv": {
+    "PLAYWRIGHT_BROWSERS_PATH": "/home/vscode/.cache/ms-playwright"
+  },
+  "mounts": [
+    "source=${localWorkspaceFolder}/mcp-server/browser-profile,target=${containerWorkspaceFolder}/mcp-server/browser-profile,type=bind"
+  ],
+  "remoteUser": "vscode"
+}

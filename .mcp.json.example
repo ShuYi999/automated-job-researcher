@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "linkedin-job-research": {
+      "command": "python3",
+      "args": ["mcp-server/server.py"],
+      "cwd": "<ABSOLUTE_PATH_TO_THIS_REPO>/mcp-server"
+    }
+  }
+}
