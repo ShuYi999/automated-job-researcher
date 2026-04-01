@@ -77,7 +77,7 @@ The app can search jobs without login (titles, companies, locations), but **full
 python mcp-server/setup_login.py
 ```
 
-This opens a Chromium browser window. Log into LinkedIn normally, then close the window. Your session cookies are saved to `mcp-server/browser-profile/` (gitignored — never committed).
+This opens a Chromium browser window. Log into LinkedIn normally, then close the window. Your session cookies are saved to `mcp-server/browser-profile/` 
 
 Sessions expire after ~7 days. Re-run the command when needed.
 
