@@ -71,20 +71,17 @@ streamlit run mcp-server/frontend.py
 
 ### 5. Authenticate with LinkedIn (first time only)
 
-The Streamlit UI fetches public search results without auth, but **full job descriptions** require a LinkedIn session. You have two options:
+The app can search jobs without login (titles, companies, locations), but **full job descriptions and AI analysis** require a LinkedIn session.
 
-**Option A — Via Claude Code (recommended if you use Claude Code):**
-1. Copy `.mcp.json.example` to `.mcp.json` and update the path
-2. Run the `setup_session` MCP tool — a browser window opens for you to log in
-3. Your session is saved in `mcp-server/browser-profile/` (gitignored)
-
-**Option B — Via the MCP server directly:**
 ```bash
-python mcp-server/server.py
-# Then call setup_session from your MCP client
+python mcp-server/setup_login.py
 ```
 
-Sessions expire after 7 days. Re-run `setup_session` when needed.
+This opens a Chromium browser window. Log into LinkedIn normally, then close the window. Your session cookies are saved to `mcp-server/browser-profile/` (gitignored — never committed).
+
+Sessions expire after ~7 days. Re-run the command when needed.
+
+> **If you use Claude Code:** You can also authenticate by running the `setup_session` MCP tool instead. Copy `.mcp.json.example` to `.mcp.json`, update the path, and ask Claude to run `setup_session`.
 
 ### 6. Search for jobs
 
@@ -107,6 +104,7 @@ job-research-automation/
 │   ├── server.py           # MCP server — 4 tools (search, detail, session setup/status)
 │   ├── frontend.py         # Streamlit UI — search, analysis, display
 │   ├── db.py               # SQLite persistence layer
+│   ├── setup_login.py      # Standalone LinkedIn login script
 │   └── requirements.txt    # Python dependencies
 ├── decisions/              # Architecture Decision Records (ADRs)
 ├── setup/                  # Setup guides
@@ -133,6 +131,9 @@ The app works fully offline with Ollama. The Claude API key is only used as a fa
 | [ADR-003](decisions/ADR-003-poc-findings.md) | POC findings — WebFetch baseline & auth wall map | Accepted |
 | [ADR-004](decisions/ADR-004-multi-persona-review.md) | Multi-persona review (SWE, QA, PM) | Accepted |
 | [ADR-005](decisions/ADR-005-mcp-server-design.md) | MCP server design (FastMCP + Playwright) | Accepted |
+| [ADR-006](decisions/ADR-006-local-llm-analysis.md) | Local LLM for job-profile analysis (Ollama + Qwen) | Accepted |
+| [ADR-007](decisions/ADR-007-sqlite-persistence.md) | SQLite persistence for search results | Accepted |
+| [ADR-008](decisions/ADR-008-scoring-strategy.md) | Job scoring strategy (keyword heuristic + LLM) | Accepted |
 
 ## License
 
