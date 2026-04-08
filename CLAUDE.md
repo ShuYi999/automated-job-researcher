@@ -70,10 +70,23 @@ Document the synthesis (agreed decisions) at the bottom of the review ADR.
 
 - **Language:** English
 - **Scope:** Personal research tool — not for production or scale
-- **ToS:** LinkedIn automation is for personal use only
-- **Rate limiting:** Always enforce delays between automated requests (2–5s minimum)
-- **Extraction:** Use semantic/text-based extraction — avoid brittle CSS selectors
+- **Legal:** Personal use only. See [ADR-009](decisions/ADR-009-legal-scraping-scope.md) for full scope and legal analysis
+  - ✓ Allowed: Individual job research, GitHub sharing, portfolio discussion
+  - ✗ Not allowed: Commercial aggregation, bulk scraping, data resale
+- **ToS:** LinkedIn automation violates their ToS but is acceptable for personal use at this scale
+- **Rate limiting:** Always enforce delays between automated requests (3–5s minimum for Playwright, 1s minimum for httpx pagination)
+- **Extraction:** Use semantic/text-based extraction — avoid brittle CSS selectors (LinkedIn changes DOM frequently)
 - **Scripts:** Keep single-file, readable, and documented with inline comments
+
+### Before Adding New Features
+
+Before adding new data sources (Glassdoor, Indeed, etc.) or expanding scope:
+1. **Check Terms of Service** — Is scraping prohibited?
+2. **Assess legal risk** — Criminal vs. ToS violation? Account ban risk?
+3. **Document in ADR** — Why add it? What are the tradeoffs?
+4. **Consider alternatives** — Is there a legal API we could use instead?
+
+**Default answer to expansion:** No. Personal use scope is intentional. Justify new features in an ADR.
 
 ---
 
